@@ -32,7 +32,7 @@ Window {
                 anchors.verticalCenter: parent
                 text: "+"
                 font.bold: true
-                font.pixelSize: 40
+                font.pixelSize: 50
             }
             StickControl{
                 id: stickControl2
@@ -41,24 +41,45 @@ Window {
                 anchors.verticalCenter: parent
                 text: "="
                 font.bold: true
-                font.pixelSize: 40
+                font.pixelSize: 50
             }
-            Text{
-                anchors.verticalCenter: parent
-                text: "?"
-                font.bold: true
-                font.pixelSize: 80
+            Rectangle{
+                width: 70
+                height: 130
+                color: "lightgrey"
+                Text{
+                    anchors.centerIn: parent
+                    text: "?"
+                    font.bold: true
+                    font.pixelSize: 100
+                    color: "red"
+                }
+
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        // TODO
+                    }
+                    onPressed: {
+                        parent.color = "grey"
+                    }
+                    onReleased: {
+                        parent.color = "lightgrey"
+                    }
+
+
+                }
             }
 
         }
 
         RowLayout{
             // empty row
-            Layout.preferredHeight: 20
+            Layout.preferredHeight: 30
         }
 
         RowLayout{
-            spacing: 30
+            spacing: 50
             width: parent.width
             Layout.alignment: Qt.AlignCenter
             SpinBox{
@@ -118,6 +139,7 @@ Window {
         anchors.fill: parent
         verticalAlignment: Image.AlignVCenter
         horizontalAlignment: Image.AlignHCenter
+        fillMode: Image.PreserveAspectFit
         visible: false
         id: imageBadResult
 
@@ -127,6 +149,7 @@ Window {
         anchors.fill: parent
         verticalAlignment: Image.AlignVCenter
         horizontalAlignment: Image.AlignHCenter
+        fillMode: Image.PreserveAspectFit
         visible: false
         id: imageGoodResult
 
