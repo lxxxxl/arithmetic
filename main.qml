@@ -3,6 +3,7 @@ import QtQuick.Window 2.12
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.1
 import QtQml 2.1
+import QtMultimedia 5.1
 
 Window {
     width: 640
@@ -74,24 +75,38 @@ Window {
                 MouseArea{
                     anchors.fill: parent
                     onClicked: function(){
-                                showResultTimer.running = true
-                                if (stickControl1.stickCount + stickControl2.stickCount == result.value)
+                                if (stickControl1.stickCount + stickControl2.stickCount == result.value){
+                                    playSound.source = "/sounds/ok.wav"
                                     imageGoodResult.visible = true
-                                else
+                                }
+                                else{
+                                    playSound.source = "qrc:/sounds/no.wav"
                                     imageBadResult.visible = true
+                                }
+                                showResultTimer.start()
 
 
 
                     }
                 }
                 Timer {
-                       interval: 1000; running: false; repeat: true
+                       interval: 1000; running: false; repeat: false
                        id: showResultTimer
                        onTriggered: {
                            imageBadResult.visible = false
                            imageGoodResult.visible = false
                        }
+                       function start(){
+                           playSound.play()
+                           showResultTimer.interval = 1000
+                           showResultTimer.running = true
+
+                       }
                    }
+
+                SoundEffect {
+                        id: playSound
+                    }
             }
 
         }

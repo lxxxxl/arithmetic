@@ -6,5 +6,7 @@
         <file>images/ok.png</file>
         <file>images/bad_big.png</file>
         <file>images/good_big.png</file>
+        <file>sounds/no.wav</file>
+        <file>sounds/ok.wav</file>
     </qresource>
 </RCC>
