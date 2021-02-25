@@ -5,6 +5,8 @@ import QtQuick.Controls 2.1
 import QtQml 2.1
 import QtMultimedia 5.1
 
+import ttswrapper 1.0
+
 Window {
     width: 640
     height: 480
@@ -12,11 +14,14 @@ Window {
     title: qsTr("arithmetic")
     id: mainWindow
 
-
+    TTSWrapper{
+        id: tts
+    }
 
     ColumnLayout{
         spacing: 10
         Layout.preferredWidth: mainWindow.width
+        Layout.alignment: Qt.AlignVCenter
         RowLayout{
             // empty row
             Layout.preferredHeight: 20
@@ -33,6 +38,7 @@ Window {
                 text: "+"
                 font.bold: true
                 font.pixelSize: 50
+                id: action
             }
             StickControl{
                 id: stickControl2
@@ -58,7 +64,9 @@ Window {
                 MouseArea{
                     anchors.fill: parent
                     onClicked: {
-                        // TODO
+                        var saystr = qsTr("Сколько будет ")
+                        saystr += stickControl1.stickCount.toString() + action.text + stickControl2.stickCount.toString()
+                        tts.say(saystr)
                     }
                     onPressed: {
                         parent.color = "grey"
