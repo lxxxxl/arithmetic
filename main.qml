@@ -104,15 +104,8 @@ Window {
                 MouseArea{
                     anchors.fill: parent
                     onClicked: function(){
-                                if (stickControl1.stickCount + stickControl2.stickCount == result.value){
-                                    playSound.source = "/sounds/ok.wav"
-                                    imageGoodResult.visible = true
-                                }
-                                else{
-                                    playSound.source = "qrc:/sounds/no.wav"
-                                    imageBadResult.visible = true
-                                }
-                                showResultTimer.start()
+                        tts.say(result.value)
+                        showResultTimer.start()
                     }
                     onPressed: {
                         parent.color = "lightgrey"
@@ -125,13 +118,32 @@ Window {
                        interval: 1000; running: false; repeat: false
                        id: showResultTimer
                        onTriggered: {
+                           if (stickControl1.stickCount + stickControl2.stickCount == result.value){
+                               playSound.source = "/sounds/ok.wav"
+                               imageGoodResult.visible = true
+                           }
+                           else{
+                               playSound.source = "qrc:/sounds/no.wav"
+                               imageBadResult.visible = true
+                           }
+                           hideResultTimer.start()
+                       }
+                       function start(){
+                           showResultTimer.interval = 1000
+                           showResultTimer.running = true
+                       }
+                }
+                Timer {
+                       interval: 1000; running: false; repeat: false
+                       id: hideResultTimer
+                       onTriggered: {
                            imageBadResult.visible = false
                            imageGoodResult.visible = false
                        }
                        function start(){
                            playSound.play()
-                           showResultTimer.interval = 1000
-                           showResultTimer.running = true
+                           hideResultTimer.interval = 1000
+                           hideResultTimer.running = true
                        }
                 }
 
