@@ -5,14 +5,14 @@ import QtQuick.Layouts 1.1
 ColumnLayout{
     id: stickLayout
     spacing: 5
-    Layout.preferredWidth: 100
+    Layout.preferredWidth: 75
     property int stickCount: stickModel.count
 
     ListModel {
            id: stickModel
            dynamicRoles: false
            ListElement {}
-       }
+    }
 
     Rectangle{
         width: 40
@@ -50,7 +50,6 @@ ColumnLayout{
                 source: "images/stick.png"
             }
         }
-
     }
 
     Rectangle{
@@ -78,8 +77,6 @@ ColumnLayout{
             onReleased: {
                 rectangleDown.color = "lightgrey"
             }
-
-
         }
     }
 }

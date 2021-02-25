@@ -20,12 +20,7 @@ Window {
 
     ColumnLayout{
         spacing: 10
-        Layout.preferredWidth: mainWindow.width
-        Layout.alignment: Qt.AlignVCenter
-        RowLayout{
-            // empty row
-            Layout.preferredHeight: 20
-        }
+        anchors.verticalCenter: parent.verticalCenter
 
         RowLayout{
             Layout.preferredWidth: mainWindow.width
@@ -33,22 +28,24 @@ Window {
             StickControl{
                 id: stickControl1
             }
+
             Text{
-                anchors.verticalCenter: parent
                 text: "+"
                 font.bold: true
                 font.pixelSize: 50
                 id: action
             }
+
             StickControl{
                 id: stickControl2
             }
+
             Text{
-                anchors.verticalCenter: parent
                 text: "="
                 font.bold: true
                 font.pixelSize: 50
             }
+
             Rectangle{
                 width: 70
                 height: 130
@@ -74,11 +71,8 @@ Window {
                     onReleased: {
                         parent.color = "lightgrey"
                     }
-
-
                 }
             }
-
         }
 
         RowLayout{
@@ -95,12 +89,18 @@ Window {
                 to: 10
                 font.pixelSize: 20
                 id: result
-
             }
 
-            Image {
-                source: "images/ok.png"
-                Layout.alignment: Qt.AlignCenter
+            Rectangle{
+                width: imageOk.width
+                height: imageOk.height
+
+                Image {
+                    source: "images/ok.png"
+                    Layout.alignment: Qt.AlignCenter
+                    id: imageOk
+                }
+
                 MouseArea{
                     anchors.fill: parent
                     onClicked: function(){
@@ -113,9 +113,12 @@ Window {
                                     imageBadResult.visible = true
                                 }
                                 showResultTimer.start()
-
-
-
+                    }
+                    onPressed: {
+                        parent.color = "lightgrey"
+                    }
+                    onReleased: {
+                        parent.color = "white"
                     }
                 }
                 Timer {
@@ -129,18 +132,15 @@ Window {
                            playSound.play()
                            showResultTimer.interval = 1000
                            showResultTimer.running = true
-
                        }
-                   }
+                }
 
                 SoundEffect {
                         id: playSound
-                    }
+                }
             }
-
         }
     }
-
 
     Image {
         source: "images/bad_big.png"
@@ -150,7 +150,6 @@ Window {
         fillMode: Image.PreserveAspectFit
         visible: false
         id: imageBadResult
-
     }
     Image {
         source: "images/good_big.png"
@@ -160,6 +159,5 @@ Window {
         fillMode: Image.PreserveAspectFit
         visible: false
         id: imageGoodResult
-
     }
 }
