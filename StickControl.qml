@@ -4,31 +4,46 @@ import QtQuick.Layouts 1.1
 
 ColumnLayout{
     id: stickLayout
-    spacing: 2
-    width: 100
+    spacing: 5
+    Layout.preferredWidth: 100
     property int stickCount: stickModel.count
 
     ListModel {
            id: stickModel
+           dynamicRoles: false
            ListElement {}
        }
 
-    Text {
+    Rectangle{
+        width: 40
+        height: 40
         Layout.alignment: Qt.AlignCenter
-        text: "+"
-        font.bold: true
-        width: parent.width
+        color: "lightgrey"
+        id: rectangleUp
+        Text {
+            horizontalAlignment:  Qt.AlignHCenter
+            verticalAlignment: Qt.AlignVCenter
+            anchors.fill:parent
+            text: "+"
+            font.pixelSize: 20
+        }
         MouseArea{
             anchors.fill: parent
             onClicked: {
                 if (stickModel.count < 5)
                     stickModel.insert(stickModel.count,{})
             }
+            onPressed: {
+                rectangleUp.color = "grey"
+            }
+            onReleased: {
+                rectangleUp.color = "lightgrey"
+            }
         }
     }
 
     Row {
-        anchors.centerIn: parent
+        Layout.alignment: Qt.AlignCenter
         Repeater {
             model: stickModel
             Image   {
@@ -38,17 +53,33 @@ ColumnLayout{
 
     }
 
-    Text {
+    Rectangle{
+        width: 40
+        height: 40
         Layout.alignment: Qt.AlignCenter
-        text: "-"
-        font.bold: true
-        width: parent.width
+        color: "lightgrey"
+        id: rectangleDown
+        Text {
+            horizontalAlignment:  Qt.AlignHCenter
+            verticalAlignment: Qt.AlignVCenter
+            anchors.fill:parent
+            text: "-"
+            font.pixelSize: 20
+        }
         MouseArea{
             anchors.fill: parent
             onClicked: {
                 if (stickModel.count > 1)
                     stickModel.remove(stickModel.count-1)
             }
+            onPressed: {
+                rectangleDown.color = "grey"
+            }
+            onReleased: {
+                rectangleDown.color = "lightgrey"
+            }
+
+
         }
     }
 }

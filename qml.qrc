@@ -3,5 +3,8 @@
         <file>main.qml</file>
         <file>StickControl.qml</file>
         <file>images/stick.png</file>
+        <file>images/ok.png</file>
+        <file>images/bad_big.png</file>
+        <file>images/good_big.png</file>
     </qresource>
 </RCC>
