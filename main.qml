@@ -103,7 +103,7 @@ Window {
             SpinBox{
                 from: 1
                 to: 10
-                font.pixelSize: 20
+                font.pixelSize: 30
                 id: result
             }
 

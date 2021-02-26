@@ -15,38 +15,11 @@ ColumnLayout{
         stickModel.clear()
         for (var i = 0; i < value; i++)
             stickModel.insert(stickModel.count,{})
+        rectangleCountText.text = stickModel.count
     }
 
     ListModel {
            id: stickModel
-    }
-
-    Rectangle{
-        width: 40
-        height: 40
-        Layout.alignment: Qt.AlignCenter
-        color: "lightgrey"
-        id: rectangleUp
-        Text {
-            horizontalAlignment:  Qt.AlignHCenter
-            verticalAlignment: Qt.AlignVCenter
-            anchors.fill:parent
-            text: "+"
-            font.pixelSize: 20
-        }
-        MouseArea{
-            anchors.fill: parent
-            onClicked: {
-                if (stickModel.count < 5)
-                    stickModel.insert(stickModel.count,{})
-            }
-            onPressed: {
-                rectangleUp.color = "grey"
-            }
-            onReleased: {
-                rectangleUp.color = "lightgrey"
-            }
-        }
     }
 
     Row {
@@ -63,27 +36,14 @@ ColumnLayout{
         width: 40
         height: 40
         Layout.alignment: Qt.AlignCenter
-        color: "lightgrey"
-        id: rectangleDown
+        id: rectangleCount
         Text {
             horizontalAlignment:  Qt.AlignHCenter
             verticalAlignment: Qt.AlignVCenter
             anchors.fill:parent
-            text: "-"
+            id: rectangleCountText
+            text: stickModel.count
             font.pixelSize: 20
-        }
-        MouseArea{
-            anchors.fill: parent
-            onClicked: {
-                if (stickModel.count > 1)
-                    stickModel.remove(stickModel.count-1)
-            }
-            onPressed: {
-                rectangleDown.color = "grey"
-            }
-            onReleased: {
-                rectangleDown.color = "lightgrey"
-            }
         }
     }
 }
