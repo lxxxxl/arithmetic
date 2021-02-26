@@ -1,17 +1,24 @@
 import QtQuick 2.2
 import QtQuick.Controls 1.1
 import QtQuick.Layouts 1.1
+import QtQml 2.1
 
 ColumnLayout{
     id: stickLayout
     spacing: 5
     Layout.preferredWidth: 75
-    property int stickCount: stickModel.count
+
+    function getStickCount(){
+        return stickModel.count
+    }
+    function setStickCount(value){
+        stickModel.clear()
+        for (var i = 0; i < value; i++)
+            stickModel.insert(stickModel.count,{})
+    }
 
     ListModel {
            id: stickModel
-           dynamicRoles: false
-           ListElement {}
     }
 
     Rectangle{
