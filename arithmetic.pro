@@ -14,7 +14,8 @@ SOURCES += \
 RESOURCES += qml.qrc
 
 TRANSLATIONS += \
-    ru.ts
+    ru.ts \
+    en.ts
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -29,3 +30,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     ttswrapper.h
+

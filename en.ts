@@ -5,12 +5,12 @@
     <name>main</name>
     <message>
         <location filename="main.qml" line="14"/>
-        <source>Арифметика</source>
+        <source>Arithmetic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="main.qml" line="21"/>
-        <source>Сколько будет </source>
+        <source>How much is </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
