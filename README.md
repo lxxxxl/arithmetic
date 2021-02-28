@@ -1,7 +1,8 @@
 # arithmetic
 Qt Android app for teaching children arithmetic
 
-Application uses opensource cliparts from [lpenz](https://openclipart.org/artist/lpenz)
+Application uses opensource cliparts from [lpenz](https://openclipart.org/artist/lpenz)  
+APK file can be downloaded [here](https://github.com/lxxxxl/arithmetic/releases/download/1.0/arithmetic-1.apk).
 
 
 ### Text to speech
